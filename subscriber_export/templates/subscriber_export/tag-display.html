@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Here are your tags</h1>
+
+<ul>
+    {% for tag in taglist %}
+    <li>{{tag.name}}</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
