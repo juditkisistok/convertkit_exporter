@@ -6,7 +6,7 @@
 
 <ul>
     {% for tag in taglist %}
-    <li>{{tag.name}}</li>
+    <li><a href="{% url 'download' tag.id %}">{{tag.name}}</a></li>
     {% endfor %}
 </ul>
 
