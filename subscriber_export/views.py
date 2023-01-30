@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import os
 
 import requests
 import json
 import pandas as pd
+
+from .forms import APIForm
+from .models import API
 
 def display_tags(request, api_key = os.environ['CK_API']):
     # ping CK API to retrieve all the tags
@@ -86,3 +89,37 @@ def download_all_subs(api_secret = os.environ['CK_SECRET']):
     all_subs_df.to_csv(response, index=False)
     
     return response
+
+def inputAPI(request):
+    form = APIForm()
+
+    if request.method == 'POST':
+        form = APIForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('display_tags')
+
+    context = {'form': form}
+    return render(request, 'subscriber_export/api-form.html', context)
+
+def updateAPI(request, email):
+    api = API.objects.get(email=email)
+    form = APIForm(instance=api)
+
+    if request.method == 'POST':
+        form = APIForm(request.POST, instance=api)
+        if form.is_valid():
+            form.save()
+            return redirect('display_tags')
+
+    context = {'form': form}
+    return render(request, 'subscriber_export/api-form.html', context)
+
+def deleteAPI(request, email):
+    api = API.objects.get(email=email)
+    if request.method == 'POST':
+        api.delete()
+        return redirect('display_tags')
+    context = {'object': api}
+    return render(request, 'subscriber_export/delete-template.html', context)
+

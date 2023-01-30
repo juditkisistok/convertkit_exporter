@@ -9,3 +9,11 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+class API(models.Model):
+    email = models.CharField(max_length=200, primary_key=True, unique=True)
+    ck_api = models.CharField(max_length=200)
+    ck_secret = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.email

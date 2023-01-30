@@ -1,14 +1,13 @@
-{% extends 'main.html' %}
-
-{% block content %}
+{% extends 'main.html' %} {% block content %}
 
 <h1>Here are your tags</h1>
 
 <ul>
-    {% for tag in taglist %}
-    <li><a href="{% url 'download' tag.id %}">{{tag.name}}</a></li>
-    {% endfor %}
+  {% for tag in taglist %}
+  <li>
+    <a href="{% url 'download' tag.id %}">{{tag.name}}</a>
+  </li>
+  {% endfor %}
 </ul>
-
 
 {% endblock %}
