@@ -7,7 +7,7 @@ import json
 import pandas as pd
 
 from .forms import APIForm
-from .models import API
+from .models import Profile
 
 def display_tags(request, api_key = os.environ['CK_API']):
     # ping CK API to retrieve all the tags
@@ -103,7 +103,7 @@ def inputAPI(request):
     return render(request, 'subscriber_export/api-form.html', context)
 
 def updateAPI(request, email):
-    api = API.objects.get(email=email)
+    api = Profile.objects.get(email=email)
     form = APIForm(instance=api)
 
     if request.method == 'POST':
@@ -116,7 +116,7 @@ def updateAPI(request, email):
     return render(request, 'subscriber_export/api-form.html', context)
 
 def deleteAPI(request, email):
-    api = API.objects.get(email=email)
+    api = Profile.objects.get(email=email)
     if request.method == 'POST':
         api.delete()
         return redirect('display_tags')

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Tag, API
+from .models import Tag, Profile
 
 admin.site.register(Tag)
-admin.site.register(API)
+admin.site.register(Profile)
