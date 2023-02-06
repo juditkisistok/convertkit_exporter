@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .forms import CustomUserCreationForm
 import os
 
 import requests
@@ -128,6 +129,8 @@ def deleteAPI(request, email):
 
 def loginUser(request):
 
+    page = 'login'
+
     if request.user.is_authenticated:
         return redirect('/')
 
@@ -148,9 +151,33 @@ def loginUser(request):
         else:
             messages.error(request, 'Username or password is incorrect')
 
-    return render(request, 'subscriber_export/login_register.html')
+    context = {'page': page}
+
+    return render(request, 'subscriber_export/login_register.html', context)
 
 def logoutUser(request):
     logout(request)
     messages.error(request, 'User was logged out succesfully')
     return redirect('login-page')
+
+def registerUser(request):
+    page = 'register'
+    form = CustomUserCreationForm()
+
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+
+            messages.success(request, 'User account was created')
+
+            login(request, user)
+            return redirect('/')
+
+        else:
+            messages.error(request, 'Error has occurred')
+
+    context = {'page': page, 'form': form}
+    return render(request, 'subscriber_export/login_register.html', context)
