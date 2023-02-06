@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
+from django.contrib.auth.models import User
+from django.contrib import messages
 import os
 
 import requests
@@ -123,3 +126,31 @@ def deleteAPI(request, email):
     context = {'object': api}
     return render(request, 'subscriber_export/delete-template.html', context)
 
+def loginUser(request):
+
+    if request.user.is_authenticated:
+        return redirect('/')
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request, "Username doesn't exist!")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        else:
+            messages.error(request, 'Username or password is incorrect')
+
+    return render(request, 'subscriber_export/login_register.html')
+
+def logoutUser(request):
+    logout(request)
+    messages.error(request, 'User was logged out succesfully')
+    return redirect('login-page')
