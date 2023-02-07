@@ -101,6 +101,7 @@ def inputAPI(request):
         form = APIForm(request.POST)
         if form.is_valid():
             form.save()
+            print("form submitted")
             return redirect('display_tags')
 
     context = {'form': form}
@@ -132,7 +133,7 @@ def loginUser(request):
     page = 'login'
 
     if request.user.is_authenticated:
-        return redirect('/')
+        return redirect('/api/')
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -147,7 +148,7 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/')
+            return redirect('/api/')
         else:
             messages.error(request, 'Username or password is incorrect')
 
@@ -174,7 +175,7 @@ def registerUser(request):
             messages.success(request, 'User account was created')
 
             login(request, user)
-            return redirect('/')
+            return redirect('/api/')
 
         else:
             messages.error(request, 'Error has occurred')

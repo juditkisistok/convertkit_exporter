@@ -2,10 +2,13 @@
 
 {% block content%}
 
+<h2>Your API keys</h2>
 <form method='POST'>
     {% csrf_token %}
     {{form.as_p}}
     <input type='submit'></input>
 </form>
+
+<a href="{% url 'display_tags' %}">Get started</a>
 
 {% endblock %}
