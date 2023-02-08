@@ -1,11 +1,23 @@
+/* Main styles */
 body {
     background: #EDEFF5;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1, h2, h3, h4, h5 {
     font-family: 'Domine', serif;
+}
+
+a {
+    color: #FB6068;
+}
+
+a:hover {
+    color: #212F4F;
 }
 
 header {
@@ -43,7 +55,7 @@ header a:focus {
 }
 
 footer {
-    background: #48639C;
+    background: #212F4F;
     color: #fff;
     text-align: center;
     padding: 40px;
@@ -61,4 +73,83 @@ footer small {
 
 footer a {
     color: #fff;
+}
+
+footer a:hover {
+    color: #FB6068;
+}
+
+/* Form styles */
+main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
+    border: 2px solid #212F4F;
+    border-radius: 10px;
+    background: #FBFCFD;
+}
+
+.card h1 {
+    margin-top: 0;
+    color: #212F4F;
+}
+
+.card h1, .card .info {
+    text-align: center;
+}
+
+.wrapper {
+    padding: 50px 50px;
+}
+
+input[type="submit"] {
+    background: #FB6068;
+    color: #fff;
+    border: 2px solid #FB6068;
+    width: 100%;
+    margin: 10px 0px;
+    padding: 10px;
+    font-size: 1em;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    border: 2px solid #FB6068;
+    border-radius: 0;
+    padding: 10px;
+    margin: 10px 0px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus-visible,
+input[type="password"]:focus-visible {
+    border: 2px solid #212F4F;
+    border-radius: 0px;
+    outline: none;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    color: #FB6068;
+    background: #FBFCFD;
+}
+
+input::placeholder {
+    opacity: 0.5;
+    font-style: italic;
+}
+
+.info {
+    font-style: italic;
+    font-size: 0.9em;
 }
