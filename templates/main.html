@@ -6,16 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'styles/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <title>ConvertKit Exporter</title>
 </head>
 <body>
     <header class="navbar">
-        {% if request.user.is_authenticated %}
-        <a href="{% url 'logout-page' %}">Log out</a>
-        {% else %}
-        <a href="{% url 'login-page' %}">Log in</a>
-        {% endif %}
-        <a href="{% url 'inputAPI' %}">API settings</a>
+        <div class="logo">
+            <img src = "{% static 'images/cklogo.png' %}">
+            <h1>ConvertKit Exporter</h1>
+        </div>
+        <div class="nav_buttons">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout-page' %}">Log out</a>
+                <a href="{% url 'inputAPI' %}">API settings</a>
+            {% else %}
+                <a href="{% url 'login-page' %}">Log in</a>
+            {% endif %}
+        </div>
     </header>
     
     {% block content %}
@@ -23,9 +32,9 @@
     {% endblock %}
 
     <footer>
-        <p>Made with 🤍 in Aarhus</p>
-        <p>Judit Kisistók</p>
+        <p>Made with 🤍 in Aarhus, Denmark</p>
+        <p>&#169; 2023 <a href="https://github.com/juditkisistok" target="_blank">Judit Kisistók</a></p>
+        <small>Heads up: this tool is <b><u>not</u></b> officially affiliated with ConvertKit, I just built it to make my own work easier. I hope it will help you too - and if it did, maybe consider <a href="https://www.buymeacoffee.com/juditkisistok" target="blank">buying me a coffee</a>?</small>
     </footer>
-    
 </body>
 </html>
