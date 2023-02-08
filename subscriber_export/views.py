@@ -13,9 +13,9 @@ import pandas as pd
 from .forms import APIForm
 from .models import Profile
 
-def display_tags(request, api_key = os.environ['CK_API']):
+def display_tags(request):
     # ping CK API to retrieve all the tags
-    tag_request = requests.get('https://api.convertkit.com/v3/tags?api_key=' + api_key)
+    tag_request = requests.get('https://api.convertkit.com/v3/tags?api_key=' + request.user.profile.ck_api)
     tags = json.loads(tag_request.content.decode(tag_request.encoding))['tags']
 
     # create a dictionary list with two base cases
@@ -47,9 +47,9 @@ def json_to_df(sub_data, df, subcol, statuscol):
     except:
         raise Exception('No subscribers found!')
 
-def download_tag_subs(request, tag, api_secret = os.environ['CK_SECRET']):
+def download_tag_subs(request, tag):
     # ping CK API to retrieve tag data
-    tag_sub_request = requests.get('https://api.convertkit.com/v3/tags/' + str(tag) + '/subscriptions?api_secret=' + api_secret)
+    tag_sub_request = requests.get('https://api.convertkit.com/v3/tags/' + str(tag) + '/subscriptions?api_secret=' + request.user.profile.ck_secret)
     tag_sub_data = json.loads(tag_sub_request.content.decode(tag_sub_request.encoding))
     print(tag_sub_data)
 
@@ -58,7 +58,7 @@ def download_tag_subs(request, tag, api_secret = os.environ['CK_SECRET']):
     tag_df = pd.DataFrame()
     for i in range(1, tag_sub_data['total_pages']+1):
         # requesting subscriber data from page i
-        tag_sub_request = requests.get('https://api.convertkit.com/v3/tags/' + str(tag) + '/subscriptions?api_secret=' + api_secret + '&page=' + str(i))
+        tag_sub_request = requests.get('https://api.convertkit.com/v3/tags/' + str(tag) + '/subscriptions?api_secret=' + request.user.profile.ck_secret + '&page=' + str(i))
         tag_sub_data = json.loads(tag_sub_request.content.decode(tag_sub_request.encoding))
         tag_df = json_to_df(tag_sub_data, tag_df, subcol = 'subscriptions', statuscol = 'subscriber.state')
     
@@ -74,14 +74,15 @@ def download_tag_subs(request, tag, api_secret = os.environ['CK_SECRET']):
     
     return response
 
-def download_all_subs(api_secret = os.environ['CK_SECRET']):
-    all_request = requests.get('https://api.convertkit.com/v3/subscribers?api_secret=' + api_secret)
+def download_all_subs(request):
+    print(request.user.profile.ck_secret)
+    all_request = requests.get('https://api.convertkit.com/v3/subscribers?api_secret=' + request.user.profile.ck_secret)
     all_subs = json.loads(all_request.content.decode(all_request.encoding))
 
     all_subs_df = pd.DataFrame()
     for i in range(1, all_subs['total_pages']+1):
         print(i)
-        all_sub_request = requests.get('https://api.convertkit.com/v3/subscribers?api_secret=' + api_secret + '&page=' + str(i))
+        all_sub_request = requests.get('https://api.convertkit.com/v3/subscribers?api_secret=' + request.user.profile.ck_secret + '&page=' + str(i))
         all_sub_data = json.loads(all_sub_request.content.decode(all_sub_request.encoding))
         all_subs_df = json_to_df(all_sub_data, all_subs_df, subcol = 'subscribers', statuscol = 'state')
 
@@ -98,10 +99,10 @@ def inputAPI(request):
     form = APIForm()
 
     if request.method == 'POST':
-        form = APIForm(request.POST)
+        form = APIForm(request.POST, instance = request.user.profile)
+        print(request.user)
         if form.is_valid():
             form.save()
-            print("form submitted")
             return redirect('display_tags')
 
     context = {'form': form}

@@ -15,3 +15,7 @@ class APIForm(UserChangeForm):
     class Meta:
         model = Profile
         fields = ['ck_api', 'ck_secret']
+        labels = {
+            'ck_api': 'ConvertKit API key',
+            'ck_secret': 'Convertkit API secret'
+        }
