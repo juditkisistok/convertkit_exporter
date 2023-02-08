@@ -122,9 +122,10 @@ input[type="submit"] {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
     width: 100%;
-    border: 2px solid #FB6068;
+    border: 2px solid #212F4F;
     border-radius: 0;
     padding: 10px;
     margin: 10px 0px;
@@ -132,16 +133,18 @@ input[type="password"] {
 }
 
 input[type="text"]:focus-visible,
-input[type="password"]:focus-visible {
-    border: 2px solid #212F4F;
+input[type="password"]:focus-visible,
+input[type="email"]:focus-visible {
+    border: 2px solid #FB6068;
     border-radius: 0px;
     outline: none;
 }
 
 input[type="submit"]:hover,
 input[type="submit"]:focus {
-    color: #FB6068;
-    background: #FBFCFD;
+    color: #fff;
+    background: #212F4F;
+    border: 2px solid #212F4F;
 }
 
 input::placeholder {
