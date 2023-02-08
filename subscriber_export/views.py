@@ -4,14 +4,13 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import CustomUserCreationForm
-import os
 
 import requests
 import json
 import pandas as pd
 
 from .forms import APIForm
-from .models import Profile, Tag
+from .models import Profile
 
 def display_tags(request):
     # ping CK API to retrieve all the tags
@@ -120,7 +119,6 @@ def deleteAPI(request, email):
     return render(request, 'subscriber_export/delete-template.html', context)
 
 def loginUser(request):
-
     page = 'login'
 
     if request.user.is_authenticated:
