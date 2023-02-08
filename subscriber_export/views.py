@@ -11,25 +11,15 @@ import json
 import pandas as pd
 
 from .forms import APIForm
-from .models import Profile
+from .models import Profile, Tag
 
 def display_tags(request):
     # ping CK API to retrieve all the tags
     tag_request = requests.get('https://api.convertkit.com/v3/tags?api_key=' + request.user.profile.ck_api)
     tags = json.loads(tag_request.content.decode(tag_request.encoding))['tags']
-
-    # create a dictionary list with two base cases
-    # all: all subscribers, regardless of tags
-    # export_all: download all individual tags and the full list
-    tagList = [
-        {'id': 0,
-        'name': 'All subscribers'},
-        {'id': 1,
-        'name': 'Export all'
-        }]
     
     # loop through the tags and populate dictionary list
-    [tagList.append({'id': tag['id'], 'name': tag['name']}) for tag in tags]
+    tagList = [{'id': tag['id'], 'name': tag['name']} for tag in tags]
 
     return render(request, 'subscriber_export/tag-display.html', {'taglist': tagList})
 
@@ -47,11 +37,11 @@ def json_to_df(sub_data, df, subcol, statuscol):
     except:
         raise Exception('No subscribers found!')
 
-def download_tag_subs(request, tag):
+def download_tag_subs(request, tag, name):
     # ping CK API to retrieve tag data
     tag_sub_request = requests.get('https://api.convertkit.com/v3/tags/' + str(tag) + '/subscriptions?api_secret=' + request.user.profile.ck_secret)
     tag_sub_data = json.loads(tag_sub_request.content.decode(tag_sub_request.encoding))
-    print(tag_sub_data)
+    print(name)
 
     # loop to retrieve all subscribers belonging to the tag
     # this is necessary because the data is paginated, so it only shows 50 entries at a time
@@ -62,7 +52,7 @@ def download_tag_subs(request, tag):
         tag_sub_data = json.loads(tag_sub_request.content.decode(tag_sub_request.encoding))
         tag_df = json_to_df(tag_sub_data, tag_df, subcol = 'subscriptions', statuscol = 'subscriber.state')
     
-    title = ('tag_' + str(tag) + '.csv').replace(' ', '_').replace(':', '').replace('/', '').lower()
+    title = ('tag_' + str(name) + '.csv').replace(' ', '_').replace(':', '').replace('/', '').lower()
     
     # create HttpResponse and add the data to it
     response = HttpResponse(

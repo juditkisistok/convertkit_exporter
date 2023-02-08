@@ -5,7 +5,7 @@
 <ul>
   {% for tag in taglist %}
   <li>
-    <a href="{% url 'download' tag.id %}">{{tag.name}}</a>
+    <a href="{% url 'download' tag.id tag.name %}">{{tag.name}}</a>
   </li>
   {% endfor %}
 </ul>

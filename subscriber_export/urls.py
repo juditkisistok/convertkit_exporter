@@ -7,7 +7,7 @@ urlpatterns = [
     path('register/', views.registerUser, name='register-page'),
 
     path('', views.display_tags, name='display_tags'),
-    path('download/<int:tag>', views.download_tag_subs, name='download'),
+    path('download/<int:tag>_<str:name>', views.download_tag_subs, name='download'),
     path('api/', views.inputAPI, name='inputAPI'),
     path('update-api/<str:email>', views.updateAPI, name='updateAPI'),
     path('delete-api/<str:email>', views.deleteAPI, name='deleteAPI'),
