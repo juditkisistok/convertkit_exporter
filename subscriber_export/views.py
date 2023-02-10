@@ -14,8 +14,14 @@ from .models import Profile
 
 def display_tags(request):
     # ping CK API to retrieve all the tags
-    tag_request = requests.get('https://api.convertkit.com/v3/tags?api_key=' + request.user.profile.ck_api)
-    tags = json.loads(tag_request.content.decode(tag_request.encoding))['tags']
+    if request.user.is_authenticated:
+        try:
+            tag_request = requests.get('https://api.convertkit.com/v3/tags?api_key=' + request.user.profile.ck_api)
+            tags = json.loads(tag_request.content.decode(tag_request.encoding))['tags']
+        except KeyError:
+            return redirect('/api/')
+    else:
+        return redirect('/login/')
     
     # loop through the tags and populate dictionary list
     tagList = [{'id': tag['id'], 'name': tag['name']} for tag in tags]
@@ -122,7 +128,10 @@ def loginUser(request):
     page = 'login'
 
     if request.user.is_authenticated:
-        return redirect('/api/')
+        try:
+            return redirect('/tags/')
+        except KeyError:
+            return redirect('/api/')
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -137,7 +146,10 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/api/')
+            try:
+                return redirect('/tags/')
+            except KeyError:
+                return redirect('/api/')
         else:
             messages.error(request, 'Username or password is incorrect')
 

@@ -156,3 +156,12 @@ input::placeholder {
     font-style: italic;
     font-size: 0.9em;
 }
+
+.error_block {
+    border: 2px solid darkred;
+    background: #cf6262;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+}

@@ -19,8 +19,9 @@
         </div>
         <div class="nav_buttons">
             {% if request.user.is_authenticated %}
-                <a href="{% url 'logout-page' %}">Log out</a>
+                <a href="{% url 'display_tags' %}">Export subscribers</a>
                 <a href="{% url 'inputAPI' %}">API settings</a>
+                <a href="{% url 'logout-page' %}">Log out</a>
             {% else %}
                 <a href="{% url 'login-page' %}">Log in</a>
             {% endif %}

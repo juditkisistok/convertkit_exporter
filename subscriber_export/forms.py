@@ -12,6 +12,7 @@ class CustomUserCreationForm(UserCreationForm):
         }
 
 class APIForm(UserChangeForm):
+    password = None
     class Meta:
         model = Profile
         fields = ['ck_api', 'ck_secret']

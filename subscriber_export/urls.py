@@ -6,6 +6,7 @@ urlpatterns = [
     path('logout/', views.logoutUser, name='logout-page'),
     path('register/', views.registerUser, name='register-page'),
 
+    path('tags/', views.display_tags, name='display_tags'),
     path('', views.display_tags, name='display_tags'),
     path('download/<int:tag>_<str:name>', views.download_tag_subs, name='download'),
     path('api/', views.inputAPI, name='inputAPI'),

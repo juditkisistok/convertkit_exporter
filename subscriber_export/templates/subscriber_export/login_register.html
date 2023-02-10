@@ -11,7 +11,21 @@
 
                 <form method="POST" action="{% url 'register-page' %}">
                     {% csrf_token %}
-                    {{ form.as_p }}
+
+                    {% for field in form %}
+                    <div class = 'form_field'>
+                        <label for="formInput#text">{{field.label}}</label>
+                        {{field}}
+
+                        {% for error in field.errors %}
+                            <div class="error_block">
+                                <small>{{ error }}</small>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+                    {% endfor %}
                     <input type="submit" value="Sign up now">
                 </form>
             </div>
@@ -26,7 +40,7 @@
             <form action="{% url 'login-page' %}" method="POST">
                 {% csrf_token %}
                 <input type="text" name="username" placeholder="Username">
-                <input type="password" name="password" placeholder="Enter password">
+                <input type="password" name="password" placeholder="••••••••••••">
                 <input type="submit" value="Login">
             </form>
         </div>
@@ -34,14 +48,14 @@
     {% endif %}
 
 
-    {% if messages %}
+    <!-- {% if messages %}
         <div class="messages">
         {% for message in messages %}
             <p class="{{ message.tags }}">{{ message }}</p>
         {% endfor %}
         </div>
+    {% endif %} -->
 
 </main>
-{% endif %}
 
 {% endblock %}

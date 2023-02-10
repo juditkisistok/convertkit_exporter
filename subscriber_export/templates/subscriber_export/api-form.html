@@ -2,13 +2,20 @@
 
 {% block content%}
 
-<h2>Your API keys</h2>
-<form method='POST'>
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type='submit'></input>
-</form>
-
-<a href="{% url 'display_tags' %}">Get started</a>
+<div class="card">
+    <div class="wrapper">
+        <h1>Your API keys</h1>
+        <form method='POST'>
+        {% csrf_token %}
+        {% for field in form %}
+        <div class = 'form_field'>
+            <label for="formInput#text">{{field.label}}</label>
+            {{field}}
+        </div>
+        {% endfor %}
+        <input type='submit'></input>
+        </form>
+    </div>
+</div>
 
 {% endblock %}
