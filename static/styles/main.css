@@ -165,3 +165,52 @@ input::placeholder {
     text-align: center;
     color: #fff;
 }
+
+/* Tag display styles */
+.download-all {
+    display: inline-block;
+    border: 2px solid #FB6068;
+    background: #FB6068;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+}
+
+.download-all:hover,
+.download-all:focus {
+    background: #fff;
+    color: #FB6068;
+}
+
+.card h2 {
+    color: #212F4F;
+    text-align: center;
+}
+
+.download-tag {
+    display: inline-block;
+    border: 2px solid #FB6068;
+    background: #fff;
+    color: #FB6068;
+    padding: 10px;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.download-tag:hover,
+.download-tag:focus {
+    background: #FB6068;
+    color: #fff;
+}
+
+.tag-container {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.card.tags {
+    max-width: 70%;
+}

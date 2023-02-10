@@ -1,16 +1,16 @@
 {% extends 'main.html' %} {% block content %}
 
-<div class="card">
+<div class="card tags">
   <div class="wrapper">
-<h1>Here are your tags</h1>
+    <h1>Download a full list of your subscribers</h1>
+    <a href="{% url 'download-all' %}" class="download-all">Download all subscribers</a>
 
-<ul>
-  {% for tag in taglist %}
-  <li>
-    <a href="{% url 'download' tag.id tag.name %}">{{tag.name}}</a>
-  </li>
-  {% endfor %}
-</ul>
+    <h2>Or pick from your tags below</h2>
+    <div class="tag-container">
+      {% for tag in taglist %}
+      <a href="{% url 'download' tag.id tag.name %}" class="download-tag">{{tag.name}}</a>
+      {% endfor %}
+    </div>
   </div>
 
 </div>
