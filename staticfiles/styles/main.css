@@ -1,3 +1,216 @@
-h1 {
-    color: red;
+/* Main styles */
+body {
+    background: #EDEFF5;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Domine', serif;
+}
+
+a {
+    color: #FB6068;
+}
+
+a:hover {
+    color: #212F4F;
+}
+
+header {
+    background: #FB6068;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid;
+    padding: 10px 20px;
+    margin: 0px 3px;
+}
+
+header a:hover, 
+header a:focus {
+    background-color: #fff;
+    color: #FB6068;
+    transition:cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.logo {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.logo img {
+    max-height: 75px;
+}
+
+footer {
+    background: #212F4F;
+    color: #fff;
+    text-align: center;
+    padding: 40px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+footer small {
+    margin-top: 15px;
+    font-style: italic;
+    display: inline-block;
+}
+
+footer a {
+    color: #fff;
+}
+
+footer a:hover {
+    color: #FB6068;
+}
+
+/* Form styles */
+main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
+    border: 2px solid #212F4F;
+    border-radius: 10px;
+    background: #FBFCFD;
+}
+
+.card h1 {
+    margin-top: 0;
+    color: #212F4F;
+}
+
+.card h1, .card .info {
+    text-align: center;
+}
+
+.wrapper {
+    padding: 50px 50px;
+}
+
+input[type="submit"] {
+    background: #FB6068;
+    color: #fff;
+    border: 2px solid #FB6068;
+    width: 100%;
+    margin: 10px 0px;
+    padding: 10px;
+    font-size: 1em;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    border: 2px solid #212F4F;
+    border-radius: 0;
+    padding: 10px;
+    margin: 10px 0px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus-visible,
+input[type="password"]:focus-visible,
+input[type="email"]:focus-visible {
+    border: 2px solid #FB6068;
+    border-radius: 0px;
+    outline: none;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    color: #fff;
+    background: #212F4F;
+    border: 2px solid #212F4F;
+}
+
+input::placeholder {
+    opacity: 0.5;
+    font-style: italic;
+}
+
+.info {
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.error_block {
+    border: 2px solid darkred;
+    background: #cf6262;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+/* Tag display styles */
+.download-all {
+    display: inline-block;
+    border: 2px solid #FB6068;
+    background: #FB6068;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+}
+
+.download-all:hover,
+.download-all:focus {
+    background: #fff;
+    color: #FB6068;
+}
+
+.card h2 {
+    color: #212F4F;
+    text-align: center;
+}
+
+.download-tag {
+    display: inline-block;
+    border: 2px solid #FB6068;
+    background: #fff;
+    color: #FB6068;
+    padding: 10px;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.download-tag:hover,
+.download-tag:focus {
+    background: #FB6068;
+    color: #fff;
+}
+
+.tag-container {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.card.tags {
+    max-width: 70%;
 }
