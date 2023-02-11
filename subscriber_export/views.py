@@ -70,13 +70,11 @@ def download_tag_subs(request, tag, name):
     return response
 
 def download_all_subs(request):
-    print(request.user.profile.ck_secret)
     all_request = requests.get('https://api.convertkit.com/v3/subscribers?api_secret=' + request.user.profile.ck_secret)
     all_subs = json.loads(all_request.content.decode(all_request.encoding))
 
     all_subs_df = pd.DataFrame()
     for i in range(1, all_subs['total_pages']+1):
-        print(i)
         all_sub_request = requests.get('https://api.convertkit.com/v3/subscribers?api_secret=' + request.user.profile.ck_secret + '&page=' + str(i))
         all_sub_data = json.loads(all_sub_request.content.decode(all_sub_request.encoding))
         all_subs_df = json_to_df(all_sub_data, all_subs_df, subcol = 'subscribers', statuscol = 'state')

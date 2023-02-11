@@ -2,6 +2,8 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from .models import Profile
+from django import forms
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -19,4 +21,7 @@ class APIForm(UserChangeForm):
         labels = {
             'ck_api': 'ConvertKit API key',
             'ck_secret': 'Convertkit API secret'
+        }
+        widgets = {
+            'ck_secret': forms.PasswordInput
         }
