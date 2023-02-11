@@ -93,7 +93,6 @@ def inputAPI(request):
 
     if request.method == 'POST':
         form = APIForm(request.POST, instance = request.user.profile)
-        print(request.user)
         if form.is_valid():
             form.save()
             return redirect('display_tags')
