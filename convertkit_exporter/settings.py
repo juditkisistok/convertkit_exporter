@@ -83,9 +83,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'convertkit_exporter',
-        'USER': 'postgres',
+        'USER': 'juditkisistok',
         'PASSWORD': os.environ['POSTGRES_PW'],
-        'HOST': 'localhost',
+        'HOST': os.environ['AWS_URL'],
         'PORT': '5432'
     }
 }
