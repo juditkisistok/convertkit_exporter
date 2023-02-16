@@ -18,7 +18,7 @@ def display_tags(request):
         try:
             tag_request = requests.get('https://api.convertkit.com/v3/tags?api_key=' + request.user.profile.ck_api)
             tags = json.loads(tag_request.content.decode(tag_request.encoding))['tags']
-        except KeyError:
+        except (KeyError, TypeError):
             return redirect('/api/')
     else:
         return redirect('/login/')
