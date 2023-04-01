@@ -1,6 +1,6 @@
 # ConvertKit Exporter
 
-ConvertKit exporter is a Django app that makes it easier to export your subscribers. I saw the need for such a tool in my own work - when I was tasked with creating monthly backups of my clients' subscriber lists, I realized that the native process is quite cumbersome:
+[ConvertKit Exporter](https://convertkit-exporter.fly.dev/) is a Django app that makes it easier to export your subscribers. I saw the need for such a tool in my own work - when I was tasked with creating monthly backups of my clients' subscriber lists, I realized that the native process is quite cumbersome:
 
 1. You click on the tag you'd like to export
 2. Select all subscribers
@@ -10,7 +10,7 @@ ConvertKit exporter is a Django app that makes it easier to export your subscrib
 6. Use the file however you wish
 7. Rinse and repeat for every tag you'd like to retrieve
 
-Phew. There has to be a better way, I thought - and shortly after, ConvertKit Exporter was born.
+Phew. There has to be a better way, I thought - and shortly after, [ConvertKit Exporter](https://convertkit-exporter.fly.dev/) was born.
 
 Once you have an account and added your ConvertKit API keys (you can find these under Settings -> Advanced), you can access all your tags from the same screen. Click on any button, and you'll get a CSV file of the active subscribers who have that tag. And... that's it 😄
 
