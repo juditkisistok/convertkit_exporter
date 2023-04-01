@@ -226,12 +226,15 @@ input::placeholder {
     header {
         display: inline-block;
         padding: 10px 0px 30px 0px;
+        text-align: center;
 }
     .logo-img {
         justify-content: center;
         margin-bottom: 10px;
-        max-height: 55px;
 }
+    .logo img {
+        max-height: 55px;
+    }
     .logo-img h1 {
         font-size: 1.5em;
 }
