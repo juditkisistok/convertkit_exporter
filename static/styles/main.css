@@ -221,3 +221,23 @@ input::placeholder {
 .card.tags {
     max-width: 70%;
 }
+
+@media screen and (max-width: 920px) {
+    header {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 0px 30px 0px;
+}
+    .logo-img {
+        justify-content: center;
+        margin-bottom: 20px;
+}
+    .nav_buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+}
+    header .nav_buttons a {
+        margin-bottom: 5px;
+}
+}
