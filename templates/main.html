@@ -9,13 +9,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Domine:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/cklogo.png' %}"/>
     <title>ConvertKit Exporter</title>
 </head>
 <body>
     <header class="navbar">
         <div class="logo">
-            <img src = "{% static 'images/cklogo.png' %}">
-            <h1>ConvertKit Exporter</h1>
+            <a href="/" class="logo-img">
+                <img src = "{% static 'images/cklogo.png' %}">
+                <h1>ConvertKit Exporter</h1>
+            </a>
         </div>
         <div class="nav_buttons">
             {% if request.user.is_authenticated %}

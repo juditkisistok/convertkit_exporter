@@ -20,6 +20,11 @@ a:hover {
     color: #212F4F;
 }
 
+.logo-img {
+    color: #FFF;
+    text-decoration: none;
+}
+
 header {
     background: #FB6068;
     color: #fff;
@@ -29,7 +34,7 @@ header {
     justify-content: space-between;
 }
 
-header a {
+header a:not(.logo-img) {
     color: #fff;
     text-decoration: none;
     border: 2px solid;
@@ -37,14 +42,14 @@ header a {
     margin: 0px 3px;
 }
 
-header a:hover, 
-header a:focus {
+header a:not(.logo-img):hover, 
+header a:not(.logo-img):focus {
     background-color: #fff;
     color: #FB6068;
     transition:cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.logo {
+.logo-img {
     display: flex;
     gap: 15px;
     align-items: center;
@@ -58,7 +63,7 @@ footer {
     background: #212F4F;
     color: #fff;
     text-align: center;
-    padding: 40px;
+    padding: 20px 40px;
 }
 
 footer p {

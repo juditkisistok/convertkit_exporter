@@ -131,3 +131,6 @@ dmypy.json
 
 # Ignore .DS_Store
 .DS_Store
+
+# remove settings.py
+convertkit_exporter/settings.py
