@@ -20,11 +20,6 @@ a:hover {
     color: #212F4F;
 }
 
-.logo-img {
-    color: #FFF;
-    text-decoration: none;
-}
-
 header {
     background: #FB6068;
     color: #fff;
@@ -53,6 +48,13 @@ header a:not(.logo-img):focus {
     display: flex;
     gap: 15px;
     align-items: center;
+    color: #FFF;
+    text-decoration: none;
+}
+
+.logo-img:hover,
+.logo-img:focus {
+    color: #FFF;
 }
 
 .logo img {
